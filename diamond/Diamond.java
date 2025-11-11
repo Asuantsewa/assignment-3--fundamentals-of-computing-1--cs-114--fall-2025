@@ -15,7 +15,7 @@ public class Diamond {
     int mid = n/2;
 // upper diamond part
     for (int i = 0; i <= mid; i++){
-      int stars = (n % 2 == 0) ? 2 * i +(n % 2) : 2 * i + 1;
+      int stars = (n % 2 == 0) ? 2 * i + (n % 2) : 2 * i + 1;
       if( stars > n) stars = n;
 
       int spaces = (n - stars) / 2;
