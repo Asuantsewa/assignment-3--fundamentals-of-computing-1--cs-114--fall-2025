@@ -5,28 +5,26 @@ public class Diamond {
     Scanner scanner = new Scanner(System.in);
 
     System.out.println("Enter an integer for the diamond's width and height: ");
-    int n = scanner.nextInt();
+    int row = scanner.nextInt();
 
-    if(n < 1) {
+    if(row < 1) {
       System.out.println("Please enter a postive integer.");
       return;
     }
 
-    int mid = n/2;
+    int mid = row/2;
 // upper diamond part
     for (int i = 0; i <= mid; i++){
-      int stars = (n % 2 == 0) ? 2 * i + (n % 2) : 2 * i + 1;
-      if( stars > n) stars = n;
-
-      int spaces = (n - stars) / 2;
-      printLine(spaces, stars);
+      for(int j = 0; i <= mid; i++);
+      System.out.println("  ");
+      for(int j = 0; j < 2 * i + 1; j++);
+      System.out.print("*");
+      System.out.println();
     }
+    for(int i = mid - 1; i >= 0; i--);
+      for(int j = 0; j < mid - i ; j++);
+      System.out.print(" ");
 // lower diamind part
-    for (int i = mid -1; i >= 0; i--){
-      int stars = (n % 2 == 0) ? 2 * i +(n % 2) : 2 * i + 1;
-      if (stars > n) stars = n;
-      int spaces = (n - stars) / 2;
-      printLine(spaces, stars);
+
     }
   }
-}
