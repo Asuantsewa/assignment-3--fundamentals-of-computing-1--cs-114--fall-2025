@@ -1,30 +1,36 @@
 import java.util.Scanner;
 
 public class Diamond {
-  public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
-
-    System.out.println("Enter an integer for the diamond's width and height: ");
-    int row = scanner.nextInt();
-
-    if(row < 1) {
-      System.out.println("Please enter a postive integer.");
-      return;
-    }
-
-    int mid = row/2;
-// upper diamond part
-    for (int i = 0; i <= mid; i++){
-      for(int j = 0; i <= mid; i++);
-      System.out.println("  ");
-      for(int j = 0; j < 2 * i + 1; j++);
-      System.out.print("*");
-      System.out.println();
-    }
-    for(int i = mid - 1; i >= 0; i--);
-      for(int j = 0; j < mid - i ; j++);
-      System.out.print(" ");
-// lower diamind part
-
-    }
+ public static void main(String[] args) {
+  Scanner scanner = new Scanner(System.in);
+  
+  System.out.print("Enter an integer for the diamond's width and height: ");
+  int n = scanner.nextInt();
+  
+  if (n < 1) {
+    System.out.println("Please enter a positive integer.");
+    return;
   }
+  if (n % 2 == 0) {
+  System.out.println("Please enter an odd number.");
+  return;
+  }
+
+int mid = n / 2;
+for (int i = 0; i < n; i++) {
+  int spaces = Math.abs(mid - i);
+  int stars = n - 2 * spaces;
+  
+  for (int s = 0; s < spaces; s++) {
+    System.out.print(" ");
+    // print stars
+  for (int st = 0; st < stars; st++) {
+    System.out.print("*");
+  }
+
+  System.out.println();
+  }
+  scanner.close();
+  }
+ }
+}
