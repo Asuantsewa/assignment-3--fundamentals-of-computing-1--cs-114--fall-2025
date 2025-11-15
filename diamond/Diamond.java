@@ -2,9 +2,9 @@ import java.util.Scanner;
 
 public class Diamond {
   public static void main(String[] args) {
-    Scanner input = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
     System.out.println("Enter a number");
-    int n = input.nextInt();
+    int n = scanner.nextInt();
     
     if (n <= 0) {
         System.out.println("Number must be positive.");
@@ -58,4 +58,5 @@ public static void printSolidDiamond(int n) {
         System.out.println();
         }
     }
+    scanner.close();
 }
