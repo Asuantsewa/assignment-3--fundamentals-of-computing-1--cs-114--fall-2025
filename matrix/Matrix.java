@@ -1,82 +1,103 @@
 import java.util.Scanner;
 
 public class Matrix {
-  private int [][] matrix;
+  private static final String HIGHLIGHT_COLOR = "\u001b[33m\u001b[1m"; // Yellow and Bold
+  private static final String RESET_COLOR = "\u001b[0m";          // Reset color/style
 
-  private static final String YELLOW = "\u001B[33m";
-  private static final String RESET = "\u001B[0m";
-  
-   System.out.println("Enter the size of the matrix: " );
-  Scanner scanner = new Scanner(System.in); 
-    int size = scanner.nextInt();
-  
-  public void matrix (int size){
-    matrix = new int[size][size];
-    System.out.println("The height is" + size + "and width is" + size);
-  }
-  
-private void swap(int x1, int y1, int x2, int y2){
-  int temp = matrix [x1] [y1]; 
-  matrix [x2] [y2] = temp;
-  }
-    // to print he matrix
-public void printMatrix(int size) {
-  int n = matrix.length;
-  for (int i = 0; i <= n; i++) {
-   for (int j = 0; j<= n; j++) {
-
-    if (i + j == n - 1) {
-      System.out.print(YELLOW + matrix[i][j] + "\t" +  RESET);
-  } else {
-    System.out.print(matrix[i][j] + "\t");
-  }
-}
-    System.out.println();
-  }
-}
-      // populate
-public void populateMatrix() {
-  int n = matrix.length;
-  int value = 1;
-  for (int i = 0; i < n; i++) {
-      for (int j = 0; j < n; j++) {
-          matrix[i][j] = value++;
-    }
-  }
-}
-// to flip
-public void flipMatrix() {
-  int n = matrix.length;
-  for (int i = 0; i < n; i++) {
-      for (int j = 0; j < n; j++) {
-// Only swap elements above the diagonal
-  if (i + j < n - 1) {
-    swap(i, j, n - 1 - j, n - 1 - i);
-      }
-    }
-  }
-}
 public static void main(String[] args) {
-  Scanner scanner = new Scanner(System.in);
-  System.out.print("Enter a positive number for the matrix size: ");
-  int size = scanner.nextInt();
+    Scanner scanner = new Scanner(System.in);
+    int matrixSize = 0;
 
-  if (size <= 0) {
-      System.out.println("The number must be positive.");
-      return;
-  }
- // Matrix m = new Matrix(size);
+        // --- STEP 1: Request a positive number for the size of the matrix ---
+    System.out.println("Starting Matrix Flipper Program...");
+    while (matrixSize <= 0) {
+    System.out.print("Enter a positive integer for the matrix size: ");
+    if (scanner.hasNextInt()) {
+    matrixSize = scanner.nextInt();
+        if (matrixSize <= 0) {
+            System.out.println("Size must be a positive integer. Please try again.");
+        }
+        } else {
+            System.out.println("Invalid input. Please enter a whole number.");
+            scanner.next(); // Consume the invalid input
+        }
+     }
 
-  //System.out.println("\nInitial matrix (all zeros):");
-  //m.printMatrix();
+    int[][] matrix = new int[matrixSize][matrixSize];
 
- // m.populateMatrix();
- // System.out.println("\nMatrix after populating with values:");
-  //m.printMatrix();
+        // --- STEP 2: Prints the matrix consisting of 0s ---
+    System.out.println(" Initial Matrix ");
+        // Print the matrix, but don't highlight the diagonal yet.
+    printMatrix(matrix, matrixSize, false); 
+        
+    // --- STEP 3 & 4: Populate the matrix (1 to N*N) and Print it ---
+    populateMatrix(matrix, matrixSize);
+    System.out.println(" Populated Matrix  ");
+    // Now print the matrix and highlight the anti-diagonal.
+    printMatrix(matrix, matrixSize, true);
+        
+        // --- STEP 5: Swap the contents across the diagonal ---
+    System.out.println(" Performing anti diagonal swap.");
+        flipMatrixAlongAntiDiagonal(matrix, matrixSize);
+        
+        // --- STEP 6: Print the flipped matrix ---
+    System.out.println(" Flipped Matrix (Non-diagonal elements are swapped) ");
+        // Print the final result, keeping the diagonal highlighted.
+    printMatrix(matrix, matrixSize, true);
 
-  //m.flipMatrix();
- // System.out.println("\nMatrix after flipping across top-right to bottom-left diagonal:");
-  
- // scanner.close();
-  }
+    scanner.close(); 
+}
+private static void populateMatrix(int[][] matrix, int size) {
+    int currentValue = 1;
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            matrix[i][j] = currentValue++;
+        }
+    }
+}
+private static void flipMatrixAlongAntiDiagonal(int[][] matrix, int size) {
+        // We only iterate through the upper-right triangle (i + j < size - 1)
+        // to ensure that each pair is swapped only once.
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+                
+                // If the element is above/left of the anti-diagonal, it needs swapping.
+        if (i + j < size - 1) { 
+                    
+                    // The coordinate for the symmetric element across the anti-diagonal.
+        int oppositeRow = size - 1 - j;
+        int oppositeCol = size - 1 - i;
+
+                    // Standard swap using a temporary variable
+        int temp = matrix[i][j];
+        matrix[i][j] = matrix[oppositeRow][oppositeCol];
+        matrix[oppositeRow][oppositeCol] = temp;
+            }
+         }
+     }
+}
+private static void printMatrix(int[][] matrix, int size, boolean highlightDiagonal) {
+        // Calculate the maximum padding width required for the largest number (N*N).
+    int paddingWidth = String.valueOf(size * size).length() + 2;
+
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+                
+                // Condition for the anti-diagonal: row index + column index equals size - 1
+         boolean isAntiDiagonal = (i + j == size - 1);
+
+            if (highlightDiagonal && isAntiDiagonal) {
+                System.out.print(HIGHLIGHT_COLOR); 
+            }
+                
+// Use printf to ensure uniform spacing for all numbers.
+        System.out.printf("%" + paddingWidth + "d", matrix[i][j]);
+
+        if (highlightDiagonal && isAntiDiagonal) {
+            System.out.print(RESET_COLOR); 
+                }
+            }
+            System.out.println(); // Newline after each row
+        }
+    }
 }
