@@ -57,6 +57,6 @@ public static void printSolidDiamond(int n) {
 
         System.out.println();
         }
+        scanner.close() ;
     }
-    scanner.close();
 }
