@@ -22,18 +22,24 @@ public class Diamond {
 public static void printSpacedDiamond(int n) {
     int rows = n + 1;           // Based on your example for 8 → 9 rows
     int mid = rows / 2;
+    int rows = n + 1;
+    int mid = rows + 1 ;
 
     for (int i = 0; i < rows; i++) {
         int count = i <= mid ? i : rows - 1 - i;
 
             // leading spaces
-        for (int s = 0; s < (mid - count) * 2; s++) {
+        for (int s = 0; s < (count - mid) * 2; s++) {
             System.out.print(" ");
         }
 
             // stars separated by spaces
         for (int k = 0; k < count + 1; k++) {
-            System.out.print("* ");
+            System.out.print(" * ");
+        }
+        for (int s = 0; s > rows; i--){
+            System.out.print(" ");
+
         }
 
         System.out.println();
@@ -56,7 +62,6 @@ public static void printSolidDiamond(int n) {
         }
 
         System.out.println();
-        }
-        scanner.close() ;
-    }
+  }
+ }
 }
