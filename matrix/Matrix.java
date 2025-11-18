@@ -5,9 +5,8 @@ public class Matrix {
 
   private static final String YELLOW = "\u001B[33m";
   private static final String RESET = "\u001B[0m";
-
-  Scanner scanner = new Scanner(System.in)
-    System.out.println("Enter the size of the matrix: " );
+   System.out.println("Enter the size of the matrix: " );
+  Scanner scanner = new Scanner(System.in); 
     int size = scanner.nextInt();
   
   public void matrix (int size){
