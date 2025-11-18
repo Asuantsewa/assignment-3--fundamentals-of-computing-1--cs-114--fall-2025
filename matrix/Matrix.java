@@ -1,46 +1,43 @@
 import java.util.Scanner;
 
 public class Matrix {
-  private static final String HIGHLIGHT_COLOR = "\u001b[33m\u001b[1m"; // Yellow and Bold
-  private static final String RESET_COLOR = "\u001b[0m";          // Reset color/style
+  private static final String HIGHLIGHT_COLOR = "\u001b[33m\u001b[1m"; 
+  private static final String RESET_COLOR = "\u001b[0m";
 
 public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     int matrixSize = 0;
 
-        // --- STEP 1: Request a positive number for the size of the matrix ---
-    System.out.println("Starting Matrix Flipper Program...");
-    while (matrixSize <= 0) {
-    System.out.print("Enter a positive integer for the matrix size: ");
-    if (scanner.hasNextInt()) {
-    matrixSize = scanner.nextInt();
-        if (matrixSize <= 0) {
-            System.out.println("Size must be a positive integer. Please try again.");
-        }
-        } else {
-            System.out.println("Invalid input. Please enter a whole number.");
-            scanner.next(); // Consume the invalid input
-        }
-     }
-
-    int[][] matrix = new int[matrixSize][matrixSize];
-
-        // --- STEP 2: Prints the matrix consisting of 0s ---
-    System.out.println(" Initial Matrix ");
-        // Print the matrix, but don't highlight the diagonal yet.
-    printMatrix(matrix, matrixSize, false); 
-        
-    // --- STEP 3 & 4: Populate the matrix (1 to N*N) and Print it ---
-    populateMatrix(matrix, matrixSize);
+//  Request a positive number for the size of the matrix
+System.out.println("Starting Matrix Flipper Program...");
+while (matrixSize <= 0) {
+  System.out.print("Enter a positive integer for the matrix size: ");
+  if (scanner.hasNextInt()) {
+  matrixSize = scanner.nextInt();
+    if (matrixSize <= 0) {
+        System.out.println("Size must be a positive integer. Please try again.");
+    }
+    } else {
+        System.out.println("Invalid input. Please enter a whole number.");
+        scanner.next(); 
+  }
+}
+int[][] matrix = new int[matrixSize][matrixSize];
+//  Prints the matrix consisting of 0s 
+System.out.println(" Initial Matrix ");
+// Print the matrix, but don't highlight the diagonal yet.
+printMatrix(matrix, matrixSize, false); 
+// Populate the matrix (1 to N*N) and Print it 
+ populateMatrix(matrix, matrixSize);
     System.out.println(" Populated Matrix  ");
     // Now print the matrix and highlight the anti-diagonal.
     printMatrix(matrix, matrixSize, true);
         
-        // --- STEP 5: Swap the contents across the diagonal ---
+        // STEP 5: Swap the contents across the diagonal 
     System.out.println(" Performing anti diagonal swap.");
         flipMatrixAlongAntiDiagonal(matrix, matrixSize);
         
-        // --- STEP 6: Print the flipped matrix ---
+        //  STEP 6: Print the flipped matrix 
     System.out.println(" Flipped Matrix (Non-diagonal elements are swapped) ");
         // Print the final result, keeping the diagonal highlighted.
     printMatrix(matrix, matrixSize, true);
@@ -56,48 +53,45 @@ private static void populateMatrix(int[][] matrix, int size) {
     }
 }
 private static void flipMatrixAlongAntiDiagonal(int[][] matrix, int size) {
-        // We only iterate through the upper-right triangle (i + j < size - 1)
-        // to ensure that each pair is swapped only once.
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
-                
-                // If the element is above/left of the anti-diagonal, it needs swapping.
-        if (i + j < size - 1) { 
-                    
-                    // The coordinate for the symmetric element across the anti-diagonal.
-        int oppositeRow = size - 1 - j;
-        int oppositeCol = size - 1 - i;
+// We only iterate through the upper-right triangle (i + j < size - 1)
+// to ensure that each pair is swapped only once.
+for (int i = 0; i < size; i++) {
+    for (int j = 0; j < size; j++) {
+// If the element is above/left of the anti-diagonal, it needs swapping.
+    if (i + j < size - 1) { 
+// The coordinate for the symmetric element across the anti-diagonal.
+    int oppositeRow = size - 1 - j;
+    int oppositeCol = size - 1 - i;
 
-                    // Standard swap using a temporary variable
-        int temp = matrix[i][j];
-        matrix[i][j] = matrix[oppositeRow][oppositeCol];
-        matrix[oppositeRow][oppositeCol] = temp;
-            }
-         }
-     }
+// Standard swap using a temporary variable
+int temp = matrix[i][j];
+matrix[i][j] = matrix[oppositeRow][oppositeCol];
+matrix[oppositeRow][oppositeCol] = temp;
+      }
+    }
+  }
 }
 private static void printMatrix(int[][] matrix, int size, boolean highlightDiagonal) {
-        // Calculate the maximum padding width required for the largest number (N*N).
-    int paddingWidth = String.valueOf(size * size).length() + 2;
+ // Calculate the maximum padding width required for the largest number (N*N).
+int paddingWidth = String.valueOf(size * size).length() + 2;
 
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
-                
-                // Condition for the anti-diagonal: row index + column index equals size - 1
-         boolean isAntiDiagonal = (i + j == size - 1);
+for (int i = 0; i < size; i++) {
+    for (int j = 0; j < size; j++) {
+// Condition for the anti-diagonal: row index + column index equals size - 1
+    boolean isAntiDiagonal = (i + j == size - 1);
 
-            if (highlightDiagonal && isAntiDiagonal) {
-                System.out.print(HIGHLIGHT_COLOR); 
-            }
+    if (highlightDiagonal && isAntiDiagonal) {
+        System.out.print(HIGHLIGHT_COLOR); 
+}
                 
 // Use printf to ensure uniform spacing for all numbers.
-        System.out.printf("%" + paddingWidth + "d", matrix[i][j]);
+System.out.printf("%" + paddingWidth + "d", matrix[i][j]);
 
-        if (highlightDiagonal && isAntiDiagonal) {
-            System.out.print(RESET_COLOR); 
-                }
-            }
-            System.out.println(); // Newline after each row
-        }
+if (highlightDiagonal && isAntiDiagonal) {
+    System.out.print(RESET_COLOR); 
+  }
+}
+    System.out.println(); // Newline after each row
     }
+  }
 }
