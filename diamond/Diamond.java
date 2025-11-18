@@ -20,8 +20,6 @@ public class Diamond {
     }
 // print even diamind
 public static void printSpacedDiamond(int n) {
-    int rows = n + 1;           // Based on your example for 8 → 9 rows
-    int mid = rows / 2;
     int rows = n + 1;
     int mid = rows + 1 ;
 
@@ -37,14 +35,26 @@ public static void printSpacedDiamond(int n) {
         for (int k = 0; k < count + 1; k++) {
             System.out.print(" * ");
         }
-        for (int s = 0; s > rows; i--){
-            System.out.print(" ");
+        for (int s = 0; s > rows;s--){
+            System.out.print(" "); 
+            // lower diamind part
+  //for (int a = mid -1; i >= 0; i--){
+    //int stars = (n % 2 == 0) ? 2 * i +(n % 2) : 2 * i + 1;
+    //if (stars > n) stars = n;
+    //int spaces = (n - stars) / 2;
 
         }
 
         System.out.println();
-        }
     }
+}
+// lower diamind part
+  //for (int a = mid -1; i >= 0; i--){
+    //int stars = (n % 2 == 0) ? 2 * i +(n % 2) : 2 * i + 1;
+    //if (stars > n) stars = n;
+
+
+    //8
 // odd diamond
 public static void printSolidDiamond(int n) {
     int mid = n / 2;
