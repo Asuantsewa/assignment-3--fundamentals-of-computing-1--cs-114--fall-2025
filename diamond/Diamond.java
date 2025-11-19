@@ -2,9 +2,10 @@ import java.util.Scanner;
 
 public class Diamond {
   public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
+    Scanner scan  = new Scanner(System.in);
     System.out.println("Enter a number");
-    int n = scanner.nextInt();
+    int n = scan.nextInt();
+    scan.close();
     
     if (n <= 0) {
         System.out.println("Number must be positive.");
@@ -26,9 +27,8 @@ public static void printSpacedDiamond(int n) {
     for (int i = 0; i < rows; i++) {
         int count = i <= mid ? i : rows - 1 - i;
 
-            // leading spaces
-        for (int s = 0; s < (count - mid) * 2; s++) {
-            System.out.print(" ");
+// leading spaces
+    for (int k = 0; k < mid - i; k++) System.out.print(" ");
         }
 
             // stars separated by spaces

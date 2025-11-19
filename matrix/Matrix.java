@@ -32,13 +32,11 @@ printMatrix(matrix, matrixSize, false);
     System.out.println(" Populated Matrix  ");
     // Now print the matrix and highlight the anti-diagonal.
     printMatrix(matrix, matrixSize, true);
-        
-        // STEP 5: Swap the contents across the diagonal 
-    System.out.println(" Performing anti diagonal swap.");
-        flipMatrixAlongAntiDiagonal(matrix, matrixSize);
+    
+        flipMatrix(matrix, matrixSize);
         
         //  STEP 6: Print the flipped matrix 
-    System.out.println(" Flipped Matrix (Non-diagonal elements are swapped) ");
+    System.out.println(" Flipped Matrix  ");
         // Print the final result, keeping the diagonal highlighted.
     printMatrix(matrix, matrixSize, true);
 
@@ -52,7 +50,7 @@ private static void populateMatrix(int[][] matrix, int size) {
         }
     }
 }
-private static void flipMatrixAlongAntiDiagonal(int[][] matrix, int size) {
+private static void flipMatrix(int[][] matrix, int size) {
 // We only iterate through the upper-right triangle (i + j < size - 1)
 // to ensure that each pair is swapped only once.
 for (int i = 0; i < size; i++) {
