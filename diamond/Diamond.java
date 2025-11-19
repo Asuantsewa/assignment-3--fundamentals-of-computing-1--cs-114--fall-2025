@@ -27,8 +27,10 @@ public static void printSpacedDiamond(int n) {
     for (int i = 0; i < rows; i++) {
         int count = i <= mid ? i : rows - 1 - i;
 
-// leading spaces
-    for (int k = 0; k < mid - i; k++) System.out.print(" ");
+            // leading spaces
+        for (int s = 0; s < (count - mid) * 2; s++) {
+            System.out.print(" ");
+        
         }
 
             // stars separated by spaces

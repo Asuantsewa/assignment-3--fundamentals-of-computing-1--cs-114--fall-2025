@@ -8,7 +8,7 @@ public class RunMatrix {
     scan.close();
 
     Matrix matrix = new Matrix(size);
-    matrix.populateMatrix();
+  matrix.populateMatrix();
     matrix.printMatrix("Printing Matrix");
     matrix.flipMatrix();
     matrix.printMatrix("Printing flipped Matrix: ");

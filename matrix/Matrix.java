@@ -32,9 +32,9 @@ printMatrix(matrix, matrixSize, false);
     System.out.println(" Populated Matrix  ");
     // Now print the matrix and highlight the anti-diagonal.
     printMatrix(matrix, matrixSize, true);
-    
-        flipMatrix(matrix, matrixSize);
-        
+
+    flipMatrix(matrix, matrixSize);
+
         //  STEP 6: Print the flipped matrix 
     System.out.println(" Flipped Matrix  ");
         // Print the final result, keeping the diagonal highlighted.
