@@ -9,7 +9,6 @@ public static void main(String[] args) {
     int matrixSize = 0;
 
 //  Request a positive number for the size of the matrix
-System.out.println("Starting Matrix Flipper Program...");
 while (matrixSize <= 0) {
   System.out.print("Enter a positive integer for the matrix size: ");
   if (scanner.hasNextInt()) {
